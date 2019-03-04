@@ -3,6 +3,8 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const _ = require('lodash');
+const multer = require('multer');
+const fs = require('fs');
 
 const {db} = require('./database/database');
 const {User} = require('./models/user');
@@ -21,6 +23,33 @@ app.use(cookieParser());
 
 app.use(express.static('public'));
 app.use(express.static('uploads'))
+
+// ============ STORAGE ==============
+const storage = multer.diskStorage({
+	destination: publicPath + '/../uploads/',
+	filename: function(req, file, cb){
+		cb(null, 'img' + '-' + Date.now() + path.extname(file.originalname));
+	}
+})
+
+const upload = multer({
+	storage: storage,
+	limits: {fileSize: 10000000},
+	fileFilter: function(req, file, cb){
+		checkFileType(file, cb)
+	}
+}).single('img');
+
+function checkFileType(file, cb){
+	const filetypes = /jpeg|jpg|png|gif/;
+	const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+	const mimetype = filetypes.test(file.mimetype);
+	if(mimetype && extname){
+		return cb(null, true)
+	} else {
+		cb('Error: Images only!')
+	}
+}
 
 
 
@@ -97,19 +126,6 @@ app.get('/profile/id', authenticate, (req, res)=>{
 app.patch('/profile', authenticate, (req,res)=>{
 	let id = req.user.id;
 	let body = _.pick(req.body, ['gender', 'telephone', 'address']);
-	// console.log(body);
-	
-	// User.findOneAndUpdate({
-	// 	_id: id,
-	// }, {$set: body}, {new: true, useFindAndModify: false}).then((user)=>{
-	// 	if(!user){
-	// 		return res.status(404).send();
-	// 	};
-	// 	res.send({user});
-	// }).catch((e)=>{
-	// 	res.status(400).send();
-	// });
-
 	User.findOne(({where: {id:id}})).then((user)=>{
 		if(!user){
 			return res.status(400).send();
@@ -121,6 +137,67 @@ app.patch('/profile', authenticate, (req,res)=>{
 	})
 
 });
+
+// =================== IMAGES ====================
+app.post('/image', authenticate, (req, res)=>{
+	let id = req.user.id;
+	console.log(id);
+	upload(req, res, (err)=>{
+		if(err){
+			res.status(401).send(err);
+		} else {
+			if(req.file === undefined){
+				res.status(404).send(err);
+			} else {
+				User.findOne(({where: {id:id}})).then((user)=>{
+					if(!user){
+						return res.status(400).send();
+					};
+					user.update({image: req.file.filename})
+					res.send({user});
+				}).catch((e)=>{
+					res.status(400).send();
+				})
+			}
+		}
+	})
+})
+
+
+app.patch('/image', authenticate, (req, res)=>{
+
+	let img = req.body.title;
+
+	fs.stat(publicPath + './../uploads/'+img, function (err, stats) {
+   		console.log(stats);
+
+	   if (err) {
+	       return console.error(err);
+	   }
+
+	   fs.unlink(publicPath + './../uploads/'+img,function(err){
+	        if(err) return console.log(err);
+	        console.log('file deleted successfully');
+	   });  
+	});
+
+
+	let id = req.user.id;
+	User.findOne(({where: {id:id}})).then((user)=>{
+		if(!user){
+			return res.status(400).send();
+		};
+		user.update({image: ''})
+		res.send({user});
+		}).catch((e)=>{
+			res.status(400).send();
+		})
+})
+
+
+
+
+
 
 
 
