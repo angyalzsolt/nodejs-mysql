@@ -1,3 +1,4 @@
+require('./models/connect.js')
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
@@ -8,6 +9,8 @@ const fs = require('fs');
 
 const {db} = require('./database/database');
 const {User} = require('./models/user');
+const {Post} = require('./models/post');
+const {Image} = require('./models/image');
 const {authenticate, loginCheck} = require('./middleware/authenticate');
 
 
@@ -107,6 +110,23 @@ app.delete('/home', authenticate,  (req, res)=>{
 	})
 })
 
+
+//         =========== CREATE POST ==========
+app.post('/home/post', authenticate, (req, res)=>{
+	let body = _.pick(req.body, ['title', 'type', 'post_body']);
+	let post = {
+		title: body.title,
+		type_of: body.type,
+		post_body: body.post_body,
+		fk_user_id: req.user.id
+	};
+	Post.create(post).then((post)=>{
+		res.status(200).send('Post created');
+	}).catch((e)=>{
+		res.status(401).send(e);
+	})
+})
+
 // ===================== PROFILE ===========================
 
 app.get('/profile', authenticate, (req, res)=> {
@@ -193,6 +213,12 @@ app.patch('/image', authenticate, (req, res)=>{
 			res.status(400).send();
 		})
 })
+
+
+// ===================== IDEAS ============================
+// app.get('/post', (req, res)=>{
+
+// })
 
 
 

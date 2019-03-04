@@ -1,4 +1,8 @@
 const Sequelize = require('sequelize');
+// const {User} = require('./../models/user');
+// const {Idea} = require('./../models/idea');
+
+
 const db = new Sequelize('nodejs', 'root', '', {
 	host: 'localhost',
 	dialect: 'mysql',
@@ -20,6 +24,13 @@ db.authenticate()
 	});
 
 
+
+// User.hasOne(Idea, {foreignKey: 'fk_user_id'})
+
+// db.sync({force: true})
+// 	.then(()=>{
+// 		console.log('Database & tables created');
+// 	})
 
 // const dbd = {};
 
