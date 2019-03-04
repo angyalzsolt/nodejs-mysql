@@ -9,8 +9,7 @@ User.hasMany(Post, {foreignKey: 'fk_user_id'});
 User.hasOne(Image, {foreignKey: 'fk_user_id'});
 // Image.belongsTo(User);
 
-
-// db.sync({force: true})
-// 	.then(()=>{
-// 		console.log('Database & tables created');
-// 	})
+db.sync({force: true})
+	.then(()=>{
+		console.log('Database & tables created');
+	})

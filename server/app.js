@@ -136,7 +136,22 @@ app.get('/profile', authenticate, (req, res)=> {
 app.get('/profile/id', authenticate, (req, res)=>{
 	let id = req.user.id;
 	console.log(id);
-	User.findOne(({where:{id:id}})).then((user)=>{
+	// User.findOne(({where:{id:id}})).then((user)=>{
+	// 	res.send(user);
+	// }).catch((e)=>{
+	// 	res.status(404).send(e);
+	// })
+
+	User.findAll({
+		where:{id:id},
+		include: [{
+			model: Image,
+			where: { fk_user_id: req.user.id},
+			required:false
+		}]
+	}).then((user)=>{
+		console.log('THIS IS THE USER FROM PROFILE')
+		console.log(user);
 		res.send(user);
 	}).catch((e)=>{
 		res.status(404).send(e);
@@ -169,14 +184,19 @@ app.post('/image', authenticate, (req, res)=>{
 			if(req.file === undefined){
 				res.status(404).send(err);
 			} else {
-				User.findOne(({where: {id:id}})).then((user)=>{
-					if(!user){
-						return res.status(400).send();
-					};
-					user.update({image: req.file.filename})
-					res.send({user});
+				// User.findOne(({where: {id:id}})).then((user)=>{
+				// 	if(!user){
+				// 		return res.status(400).send();
+				// 	};
+				// 	user.update({image: req.file.filename})
+				// 	res.send({user});
+				// }).catch((e)=>{
+				// 	res.status(400).send();
+				// })
+				Image.create({title: 'test', url: req.file.filename, fk_user_id: req.user.id}).then((image)=>{
+					res.status(200).send('Image added');
 				}).catch((e)=>{
-					res.status(400).send();
+					res.status(401).send(e);
 				})
 			}
 		}
@@ -203,11 +223,12 @@ app.patch('/image', authenticate, (req, res)=>{
 
 
 	let id = req.user.id;
-	User.findOne(({where: {id:id}})).then((user)=>{
+	Image.findOne(({where: {fk_user_id:id}})).then((user)=>{
 		if(!user){
 			return res.status(400).send();
 		};
-		user.update({image: ''})
+		// user.update({url: ''})
+		user.destroy({ force: true })
 		res.send({user});
 		}).catch((e)=>{
 			res.status(400).send();

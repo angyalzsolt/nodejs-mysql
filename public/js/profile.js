@@ -20,18 +20,19 @@ $('#infos').on('submit', (e)=>{
 
 
 $.get('/profile/id', (data)=>{
-	$('#user-name').html(data.name);
-	$('#email').html(data.email);
-	$('#gender').val(data.gender);
-	$('#telnum').val(data.telephone);
-	$('#address').val(data.address);
-	genreateDomELements(data);
+	console.log(data);
+	$('#user-name').html(data[0].name);
+	$('#email').html(data[0].email);
+	$('#gender').val(data[0].gender);
+	$('#telnum').val(data[0].telephone);
+	$('#address').val(data[0].address);
+	genreateDomELements(data[0]);
 	// $('#profile-pic').html(`<img src=./${data.image} style="width: 200px" onerror="this.src = '../icon.jpg';">`);
 });
 
 const genreateDomELements = (data)=>{
 	$('.name').html(`Hey ${data.name}.`);
-	$('#profile-pic').html(`<img class="profile-pic" src=./${data.image} onerror="this.src = '../icon.jpg';">`);
+	$('#profile-pic').html(`<img class="profile-pic" src=./${data.img.url} onerror="this.src = '../icon.jpg';">`);
 }
 
 

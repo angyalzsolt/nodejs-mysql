@@ -36,9 +36,9 @@ const User = db.define('user', {
 	address: {
 		type: Sequelize.STRING
 	},
-	image: {
-		type: Sequelize.STRING
-	},
+	// image: {
+	// 	type: Sequelize.STRING
+	// },
 	location: {
 		type: Sequelize.STRING,
 		allowNull: true
