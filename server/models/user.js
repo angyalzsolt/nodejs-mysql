@@ -27,6 +27,18 @@ const User = db.define('user', {
 			}
 		}
 	},
+	gender: {
+		type: Sequelize.STRING
+	},
+	telephone: {
+		type: Sequelize.STRING
+	},
+	address: {
+		type: Sequelize.STRING
+	},
+	image: {
+		type: Sequelize.STRING
+	},
 	location: {
 		type: Sequelize.STRING,
 		allowNull: true
@@ -34,6 +46,7 @@ const User = db.define('user', {
 	},
 	token: {
 		type: Sequelize.STRING,
+		defaultValue: null,
 		allowNull: true
 	}
 	}, {
@@ -47,7 +60,7 @@ User.prototype.generateAuthToken = function(){
 		return Promise.reject();
 	};
 	let token = jwt.sign({
-		exp: Math.floor(Date.now() / 1000) + 1000,
+		exp: Math.floor(Date.now() / 1000) + 500,
 		_id: user.id
 	}, 'secret').toString();
 	user.token = token;
@@ -89,7 +102,7 @@ User.findByCredentials = function(email, password){
 
 User.prototype.removeToken = function(token){
 	let user = this;
-	return user.update({token: ''});
+	return user.update({token: null});
 }
 
 

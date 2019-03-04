@@ -20,5 +20,13 @@
     "nodemon": "^1.18.10",
     "path": "^0.12.7",
     "sequelize": "^4.42.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/angyalzsolt/nodejs-mysql.git"
+  },
+  "bugs": {
+    "url": "https://github.com/angyalzsolt/nodejs-mysql/issues"
+  },
+  "homepage": "https://github.com/angyalzsolt/nodejs-mysql#readme"
 }

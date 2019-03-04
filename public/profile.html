@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Profile</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="/styles/styles.css">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+	<a class="home-btn" href="/home" title="">Home</a>
+		
+	
+	<h1 class="name"></h1>
+	<h2>This is your profile</h2>
+	<div id="profile-pic">
+		
+	</div>
+	<button class="small-btn" id="delete">Delete Img</button>
+
+	<form id="images" method="POST" action="/image" enctype="multipart/form-data">
+      <input type="file" name="img" id="img">
+
+      <input class="small-btn" type="submit" value="Upload">
+    </form>
+	<hr>
+	<h3>Please add more information</h3>
+	<form class="user-info" id="infos">
+<!-- 		<label>Hello: </label>
+		<div id="user-name"></div> -->
+		<label>Email: </label>
+		<div id="email"></div>
+		<p class="input-names">Gender</p>
+		<select class="input" id="gender" name="gender">
+			<option value="Female">Female</option>
+			<option value="male">Male</option>
+		</select>
+	
+		<p class="input-names">Telelphone Number</p>
+		<input class="input" id="telnum" type="text" name="telephone" placeholder="telephone">
+
+		<p class="input-names">Address</p>
+		<input class="input" id="address" type="text" name="address">
+		<button class="button">Add more infos</button>
+	</form>
+	
+ 
+</div>
+
+	<script type="text/javascript" src="/js/libs/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="/js/profile.js"></script>
+
+</body>
+</html>

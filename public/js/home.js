@@ -8,3 +8,5 @@ $('#logout').on('click', (e)=>{
 		console.log('ERROR OCCURED: ', msg.responseText);
 	})
 })
+
+
