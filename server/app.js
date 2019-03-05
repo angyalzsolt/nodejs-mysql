@@ -85,7 +85,7 @@ app.post('/login', (req, res)=>{
 
 	User.findByCredentials(body.email, body.password).then((user)=>{
 		return user.generateAuthToken().then((token)=>{
-			res.cookie('jwt', token, {expires: new Date(Date.now() + 5000000)}).status(200).send({user});
+			res.cookie('jwt', token, {expires: new Date(Date.now() + 50000000)}).status(200).send({user});
 		})
 	}).catch((e)=>{
 		res.status(404).send(e)
@@ -129,10 +129,13 @@ app.post('/home/post', authenticate, (req, res)=>{
 
 //          ============== GET POST =================
 app.get('/home/posts', authenticate, (req, res)=>{
-	let id = req.body.id;
+	// let id = req.body.id;
+	let user = req.user.dataValues;
+	// console.log(req.user.dataValues);
+	let data;
 	Post.findAll({include:{model: User},order:[['createdAt', 'DESC']]}).then((posts)=>{
-
-		res.send(posts);
+		data = {user, posts}
+		res.send(data);
 	}).catch((e)=>{
 		res.status(400).send(e);
 	})

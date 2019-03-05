@@ -56,11 +56,11 @@ const User = db.define('user', {
 
 User.prototype.generateAuthToken = function(){
 	let user = this;
-	if(user.token !== null){
-		return Promise.reject();
-	};
+	// if(user.token !== null){
+	// 	return Promise.reject();
+	// };
 	let token = jwt.sign({
-		exp: Math.floor(Date.now() / 1000) + 5000,
+		exp: Math.floor(Date.now() / 1000) + 100000,
 		_id: user.id
 	}, 'secret').toString();
 	user.token = token;
@@ -76,6 +76,11 @@ User.findByToken = function(token){
 	try {
 		decoded = jwt.verify(token, 'secret');
 	} catch(e){
+		console.log('This is my token', token);
+		decoded = jwt.verify(token, 'secret', {ignoreExpiration: true});
+		User.findOne({where: {id: decoded._id}}).then((user)=>{
+			user.update({token: null});
+		})
 		return Promise.reject();
 	};
 	return User.findOne({where:{id: decoded._id, token: token}})

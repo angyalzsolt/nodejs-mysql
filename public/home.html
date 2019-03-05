@@ -8,40 +8,64 @@
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 </head>
 <body>
-	<h1>Home</h1>
-	<h2>welcome to the page</h2>
-	<p>Later you can do awesome things here, until you may want to <a href="/profile">edit your profile</a></p>
-	<hr>
-	<button id="logout">Logout</button>
+<div class="home-container">
+	<div class="header">
+		<h1>Welcome to the page</h1>
+		<h2>Ask, answer, look around...</h2>
+		<!-- <p>Later you can do awesome things here, until you may want to <a href="/profile">edit your profile</a></p>
+		<hr> -->
+		
+	</div>
+
 	<br>
 	<hr>
-	<div class="post-container">
-		<div>
-			<h1>Add a new Post</h1>
-			<form id="posts">
-				<p>Title</p>
-				<input type="text" name="title" id="title" placeholder="Title">
-				<br>
-				<p>Type</p>
-				<select id="typeOf">
-					<option value="app">Application</option>
-					<option value="work">Work</option>
-					<option value="adventure">Adventure</option>
-					<option value="else">Else</option>
-				</select>
-				<br>
-				<p>Post body</p>
-				<input type="text" name="body" id="post_body" placeholder="Write your story">
-				<br>
-				<button>Create a new post</button>
-			</form>
+	<div class="main-field">
+		<div class="side-menu" id="user_target">
+			<button id="logout" class="logout-btn">Logout</button>
+			<button class="edit-btn"><a href="/profile" title="">Edit</a></button>
 		</div>
-		<h1>News</h1>
-		<div id="post_target">
+
+		<div class="post-container">
+			<div>
+				<h1>Add a new Post</h1>
+				<form id="posts">
+					<p class="post-input-name">Title</p>
+					<input class="post-input" type="text" name="title" id="title" placeholder="Title">
+					
+					<p class="post-input-name">Category</p>
+					<select class="post-input" id="typeOf">
+						<option value="app">Application</option>
+						<option value="work">Work</option>
+						<option value="adventure">Adventure</option>
+						<option value="else">Else</option>
+					</select>
+					
+					<p class="post-input-name">Post body</p>
+					<input class="post-input" type="textfield" name="body" id="post_body" placeholder="Write your story">
+					<br>
+					<button class="post-btn">Create</button>
+				</form>
+			</div>
 			
+			<div id="post_target">
+				<h1>News</h1>
+
+			</div>
+		</div>
+		<div class="side-search">
+			<input type="txt" class="post-input-name" name="search_field" id="search_field" placeholder="Search for a specified post">
 		</div>
 	</div>
 
+<div>
+	<footer>
+	Angyal Zsolt
+	<br>
+	2019
+	</footer>
+</div>
+	
+</div>
 
 
 

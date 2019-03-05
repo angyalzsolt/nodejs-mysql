@@ -2,7 +2,12 @@ const {User} = require('./../models/user');
 
 const authenticate = (req, res, next)=>{
 	let token = req.cookies.jwt;
-
+	// console.log(token.length);
+	if(!token){
+		console.log('auth token missing')
+		// return Promise.reject();
+		res.redirect('/login');
+	}
 	User.findByToken(token).then((user)=>{
 		if(!user){
 			return Promise.reject();
@@ -11,6 +16,8 @@ const authenticate = (req, res, next)=>{
 		req.user = user;
 		next();
 	}).catch((e)=>{
+
+		res.clearCookie('jwt');
 		res.redirect('/login');
 	});
 };
@@ -18,13 +25,15 @@ const authenticate = (req, res, next)=>{
 
 const loginCheck = (req, res, next)=>{
 	let token = req.cookies.jwt;
+	if(!token){
 
+		return next();
+	}
 	User.findByToken(token).then((user)=>{
 		if(user){
 			res.redirect('/home');
 			next();
 		};
-		next();
 	}).catch((e)=>{
 		next();
 	})
