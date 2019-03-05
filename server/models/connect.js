@@ -5,11 +5,11 @@ const {Post} = require('./../models/post');
 const {Image} = require('./../models/image');
 
 User.hasMany(Post, {foreignKey: 'fk_user_id'});
-// Idea.belongsTo(User);
+Post.belongsTo(User, {foreignKey: 'fk_user_id'});
 User.hasOne(Image, {foreignKey: 'fk_user_id'});
 // Image.belongsTo(User);
 
-db.sync({force: true})
-	.then(()=>{
-		console.log('Database & tables created');
-	})
+// db.sync({force: true})
+// 	.then(()=>{
+// 		console.log('Database & tables created');
+// 	})

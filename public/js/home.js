@@ -1,3 +1,5 @@
+
+// ============= LOG OUT =====================
 $('#logout').on('click', (e)=>{
 	$.ajax({
 		url: '/home',
@@ -9,7 +11,7 @@ $('#logout').on('click', (e)=>{
 	})
 });
 
-
+// ==================== CREATE POST =======================
 $('#posts').on('submit', (e)=>{
 	e.preventDefault();
 	let post = {
@@ -28,6 +30,28 @@ $('#posts').on('submit', (e)=>{
 	}).fail((msg)=>{
 		console.log('ERROR OCCURED', msg.responseText);
 	})
+
+	$.get('/home/posts', (data)=>{
+		console.log('GET DATA')
+		data.forEach((post)=>{
+			generatePostDom(post);
+		})
+})
 })
 
+//================ GET POSTS =====================
+$.get('/home/posts', (data)=>{
+	data.forEach((post)=>{
+		// console.log(post.user.name)
 
+		generatePostDom(post);
+	})
+})
+
+const generatePostDom = (post)=>{
+	console.log(post.title)
+	
+	$('#post_target').append(`<h3>${post.title}</h3><p>${post.createdAt}</p><i>By - ${post.user.name}</i>`);
+	
+
+}

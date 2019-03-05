@@ -112,3 +112,10 @@ body {
 	text-decoration: none;
 }
 
+.post-container {
+	display: flex;
+	width: 70rem;
+	margin: auto;
+	justify-content: space-between;
+}
+

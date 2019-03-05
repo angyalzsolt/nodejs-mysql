@@ -60,7 +60,7 @@ User.prototype.generateAuthToken = function(){
 		return Promise.reject();
 	};
 	let token = jwt.sign({
-		exp: Math.floor(Date.now() / 1000) + 500,
+		exp: Math.floor(Date.now() / 1000) + 5000,
 		_id: user.id
 	}, 'secret').toString();
 	user.token = token;
