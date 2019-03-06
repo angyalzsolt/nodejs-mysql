@@ -54,6 +54,10 @@ function checkFileType(file, cb){
 	}
 }
 
+app.get('/', (req, res)=>{
+	res.redirect('/login');
+})
+
 
 
 // ============= REGISTER ==============

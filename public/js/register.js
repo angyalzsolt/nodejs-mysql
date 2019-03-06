@@ -7,7 +7,7 @@ navigator.geolocation.getCurrentPosition((position)=>{
 	}
 	console.log(user);
 }, (err)=>{
-	return alert('Fuck off again');
+	console.log(err);
 })
 
 $('#register').on('submit', (e)=>{

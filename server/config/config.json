@@ -1,0 +1,19 @@
+{
+	"development": {
+		"username": "root",
+		"password": "",
+		"database": "nodejs",
+		"host": "localhost",
+		"dialect": "mysql",
+		"JWT_SECRET": "verysafesecretimpossibletoguess"
+	},
+	"production": {
+		"username": "zsolzcf_nodejs",
+		"password": "DAZ.aFee$(Ya",
+		"database": "zsolzcf_nodejs",
+		"host": "zsolz.codefactory.live",
+		"dialect": "mysql",
+		"JWT_SECRET": "verysafesecretimpossibletoguess"
+	}
+
+}
