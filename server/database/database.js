@@ -2,8 +2,14 @@ const Sequelize = require('sequelize');
 // const {User} = require('./../models/user');
 // const {Idea} = require('./../models/idea');
 
+// const db = new Sequelize('zsolzcf_nodejs', 'zsolzcf_nodejs', '-WAqu(JGQ*fW', {
+// 	host: 'zsolz.codefactory.live',
+// 	dialect: 'mysql',
+// 	operatorsAliases: false,
 
-const db = new Sequelize('nodejs', 'root', '', {
+
+
+const db = new Sequelize('zsolzcf_nodejs', 'root', 'password', {
 	host: 'localhost',
 	dialect: 'mysql',
 	operatorsAliases: false,
@@ -24,23 +30,10 @@ db.authenticate()
 	});
 
 
-
-// User.hasOne(Idea, {foreignKey: 'fk_user_id'})
-
-// db.sync({force: true})
-// 	.then(()=>{
-// 		console.log('Database & tables created');
-// 	})
-
-// const dbd = {};
-
-// db.Sequelize = Sequelize;
-// db.sequelize = sequelize;
-
-// db.user = require('./../models/user');
-// db.user = require('./../token');
-
-
+db.sync({force: true})
+	.then(()=>{
+		console.log('Database & tables created');
+	})
 
 
 
