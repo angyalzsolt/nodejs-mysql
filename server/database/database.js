@@ -9,7 +9,7 @@ const Sequelize = require('sequelize');
 
 
 
-const db = new Sequelize('zsolzcf_nodejs', 'root', 'password', {
+const db = new Sequelize('root', 'root', 'password', {
 	host: 'localhost',
 	dialect: 'mysql',
 	operatorsAliases: false,
