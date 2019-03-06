@@ -2,17 +2,17 @@ const Sequelize = require('sequelize');
 // const {User} = require('./../models/user');
 // const {Idea} = require('./../models/idea');
 
-// const db = new Sequelize('zsolzcf_nodejs', 'zsolzcf_nodejs', '-WAqu(JGQ*fW', {
-// 	host: 'zsolz.codefactory.live',
-// 	dialect: 'mysql',
-// 	operatorsAliases: false,
-
-
-
-const db = new Sequelize('root', 'root', 'password', {
-	host: 'localhost',
+const db = new Sequelize('zsolzcf_nodejs', 'zsolzcf_nodejs', '-WAqu(JGQ*fW', {
+	host: 'zsolz.codefactory.live',
 	dialect: 'mysql',
 	operatorsAliases: false,
+
+
+
+// const db = new Sequelize('root', 'root', 'password', {
+// 	host: 'localhost',
+// 	dialect: 'mysql',
+// 	operatorsAliases: false,
 
 	pool: {
 		max: 5,
