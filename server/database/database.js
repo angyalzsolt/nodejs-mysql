@@ -31,12 +31,12 @@ db.authenticate()
 	});
 
 
-db.sync({force: true})
-	.then(()=>{
-		console.log('Database & tables created');
-	}).catch((e)=>{
-		console.log('Error', e);
-	})
+// db.sync({force: true})
+// 	.then(()=>{
+// 		console.log('Database & tables created');
+// 	}).catch((e)=>{
+// 		console.log('Error', e);
+// 	})
 
 
 
