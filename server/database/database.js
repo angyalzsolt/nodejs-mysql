@@ -10,7 +10,12 @@ require('./../config/config');
 
 
 
-const db = new Sequelize('zsolzcf_nodejs', 'zsolzcf_nodejs', 'DAZ.aFee$(Ya', {
+// const db = new Sequelize('zsolzcf_nodejs', 'zsolzcf_nodejs', 'DAZ.aFee$(Ya', {
+// 	host: 'zsolz.codefactory.live',
+// 	dialect: 'mysql',
+// 	operatorsAliases: false,
+
+const db = new Sequelize('zsolzcf_nodejs', 'zsolzcf_nodejs', '-WAqu(JGQ*fW', {
 	host: 'zsolz.codefactory.live',
 	dialect: 'mysql',
 	operatorsAliases: false,
