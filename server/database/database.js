@@ -1,9 +1,10 @@
 const Sequelize = require('sequelize');
+require('./../config/config');
 // const {User} = require('./../models/user');
 // const {Idea} = require('./../models/idea');
 
-const db = new Sequelize('zsolzcf_nodejs', 'zsolzcf_nodejs', '-WAqu(JGQ*fW', {
-	host: 'zsolz.codefactory.live',
+const db = new Sequelize(process.env.DATABASE, process.env.username, process.env.password, {
+	host: process.env.host,
 	dialect: 'mysql',
 	operatorsAliases: false,
 
@@ -33,6 +34,8 @@ db.authenticate()
 db.sync({force: true})
 	.then(()=>{
 		console.log('Database & tables created');
+	}).catch((e)=>{
+		console.log('Error', e);
 	})
 
 

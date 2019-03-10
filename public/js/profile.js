@@ -1,5 +1,5 @@
 $('#infos').on('submit', (e)=>{
-	e.preventDefault();
+	// e.preventDefault();
 	let user = {
 		gender: e.target.elements.gender.value,
 		telephone: e.target.elements.telephone.value,
@@ -32,7 +32,8 @@ $.get('/profile/id', (data)=>{
 
 const genreateDomELements = (data)=>{
 	$('.name').html(`Hey ${data.name}.`);
-	$('#profile-pic').html(`<img class="profile-pic" src=./${data.img.url} onerror="this.src = '../icon.jpg';">`);
+	let imgSrc = data.img !== null ? data.img.url : 'icon.jpg'
+	$('#profile-pic').html(`<img class="profile-pic" src=./${imgSrc} onerror="this.src = 'icon.jpg';">`);
 }
 
 

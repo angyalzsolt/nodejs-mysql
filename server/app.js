@@ -1,4 +1,6 @@
-require('./models/connect.js')
+require('./models/connect.js');
+require('./config/config');
+
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
@@ -26,6 +28,9 @@ app.use(cookieParser());
 
 app.use(express.static('public'));
 app.use(express.static('uploads'))
+
+console.log(process.env.JWT_SECRET);
+console.log(process.env.username);
 
 // ============ STORAGE ==============
 const storage = multer.diskStorage({
@@ -125,7 +130,7 @@ app.post('/home/post', authenticate, (req, res)=>{
 		fk_user_id: req.user.id
 	};
 	Post.create(post).then((post)=>{
-		res.status(200).send('Post created');
+		res.status(200).send(post);
 	}).catch((e)=>{
 		res.status(401).send(e);
 	})
@@ -134,10 +139,24 @@ app.post('/home/post', authenticate, (req, res)=>{
 //          ============== GET POST =================
 app.get('/home/posts', authenticate, (req, res)=>{
 	// let id = req.body.id;
-	let user = req.user.dataValues;
+	// let user = req.user.dataValues;
+	let id = req.user.id;
+	let user;
+	User.findAll({
+		where:{id:id},
+		include: [{
+			model: Image,
+			where: { fk_user_id: id},
+			required: false
+		}]
+	}).then((us)=>{
+		user = us;
+	}).catch((e)=>{
+		console.log(e);
+	})
 	// console.log(req.user.dataValues);
 	let data;
-	Post.findAll({include:{model: User},order:[['createdAt', 'DESC']]}).then((posts)=>{
+	Post.findAll({include:{model: User, include:[Image]},order:[['createdAt', 'DESC']]}).then((posts)=>{
 		data = {user, posts}
 		res.send(data);
 	}).catch((e)=>{

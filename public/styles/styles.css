@@ -213,20 +213,6 @@ a {
     background: #7373ef;
 }
 
-#post_target{
-	text-align: center;
-}
-
-.post-title {
-	font-size: 1.4rem;
-	margin:0;
-}
-
-.post-type {
-	font-size: 1rem;
-	margin: 0;
-}
-
 .user-name {
 	font-size: 1.8rem;
 	margin: 0.3rem;
@@ -260,13 +246,101 @@ a {
 	justify-content: space-around;
 }
 
-.side-menu{
-	/* border: 1px solid black; */
-	width: 25%;
-}
+
 .side-search {
 	/* border: 1px solid red; */
 	width: 25%;
 }
 
 
+/* home user panel */
+.side-menu{
+	/* border: 1px solid black; */
+	width: 25%;
+}
+
+
+.first-row {
+	display: flex;
+	/* border: 1px solid black; */
+}
+
+
+.user-profile-img {
+	width: 175px;
+	height: 175px;
+	/* border: 1px solid red; */
+
+}
+
+.profile-name {
+	font-size: 2.4rem;
+	padding: 0;
+	margin: 20px 0 0 10px;
+}
+
+
+.user-data  {
+	margin: 5px 0 0 10px;
+}
+
+.edit-text {
+	margin: 10px 0 0 10px;
+	font-size: 1.1rem;
+	text-decoration: underline;
+	font-weight: bold;
+}
+
+
+ /* post menu */
+.middle-menu-title {
+	margin: 0!important;
+	padding: 0!important;
+}
+
+.post-con {
+	display: flex;
+	margin-bottom: 5rem;
+}
+.profile-img {
+	width: 130px;
+	height: 130px;
+}
+
+.author{
+	margin: 0 0 0 10px;
+	padding: 0;
+	font-weight: 300;
+	font-size: 1.1rem;
+}
+
+
+
+#post_target{
+/* 	text-align: center;
+ */}
+
+.post-title {
+	margin: 0 0 0 10px;
+	font-size: 1.7rem;
+	font-weight: bold;
+}
+
+.post-type {
+	font-size: 1rem;
+	margin: 0 0 0 10px;
+}
+
+.post-body {
+	margin: 0 0 0 10px;
+}
+
+.post-time {
+	margin: 0 0 0 10px;
+}
+
+
+.empty-message-box{
+	text-align: center;
+	font-size: 5rem;
+}

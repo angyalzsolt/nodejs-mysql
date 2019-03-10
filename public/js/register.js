@@ -15,6 +15,9 @@ $('#register').on('submit', (e)=>{
 	user.name = e.target.elements.name.value;
 	user.email = e.target.elements.email.value;
 	user.password = e.target.elements.password.value;
+	if(user.password !== e.target.elements.re_password.value){
+		return $('.error-msg').html('Passwords not match, please try again.');
+	}
 	console.log(user);
 	$.ajax({
 		url:'/register',

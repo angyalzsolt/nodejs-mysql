@@ -12,22 +12,28 @@
 	<div class="header">
 		<h1>Welcome to the page</h1>
 		<h2>Ask, answer, look around...</h2>
-		<!-- <p>Later you can do awesome things here, until you may want to <a href="/profile">edit your profile</a></p>
-		<hr> -->
-		
 	</div>
 
 	<br>
 	<hr>
 	<div class="main-field">
 		<div class="side-menu" id="user_target">
+			<input type="txt" class="post-input-name" name="search_field" id="search_field" placeholder="Search for a specified post">
+			<br>
 			<button id="logout" class="logout-btn">Logout</button>
-			<a href="/profile" title=""><button class="edit-btn">Edit</button></a>
 		</div>
 
 		<div class="post-container">
+			
+			
+			<div id="post_target">
+				<h1>News</h1>
+
+			</div>
+		</div>
+		<div class="side-search">
 			<div>
-				<h1>Add a new Post</h1>
+				<h1 class="middle-menu-title">Add a new Post</h1>
 				<form id="posts">
 					<p class="post-input-name">Title</p>
 					<input class="post-input" type="text" name="title" id="title" placeholder="Title">
@@ -46,14 +52,6 @@
 					<button class="post-btn">Create</button>
 				</form>
 			</div>
-			
-			<div id="post_target">
-				<h1>News</h1>
-
-			</div>
-		</div>
-		<div class="side-search">
-			<input type="txt" class="post-input-name" name="search_field" id="search_field" placeholder="Search for a specified post">
 		</div>
 	</div>
 

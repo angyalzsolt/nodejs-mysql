@@ -62,7 +62,7 @@ User.prototype.generateAuthToken = function(){
 	let token = jwt.sign({
 		exp: Math.floor(Date.now() / 1000) + 100000,
 		_id: user.id
-	}, 'secret').toString();
+	}, process.env.JWT_SECRET).toString();
 	user.token = token;
 	return user.save().then(()=>{
 		return token;
@@ -74,10 +74,10 @@ User.findByToken = function(token){
 	let user = this;
 	let decoded;
 	try {
-		decoded = jwt.verify(token, 'secret');
+		decoded = jwt.verify(token, process.env.JWT_SECRET);
 	} catch(e){
 		console.log('This is my token', token);
-		decoded = jwt.verify(token, 'secret', {ignoreExpiration: true});
+		decoded = jwt.verify(token, process.env.JWT_SECRET, {ignoreExpiration: true});
 		User.findOne({where: {id: decoded._id}}).then((user)=>{
 			user.update({token: null});
 		})
