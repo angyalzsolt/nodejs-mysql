@@ -3,17 +3,17 @@ require('./../config/config');
 // const {User} = require('./../models/user');
 // const {Idea} = require('./../models/idea');
 
-const db = new Sequelize(process.env.DATABASE, process.env.username, process.env.password, {
-	host: process.env.host,
-	dialect: 'mysql',
-	operatorsAliases: false,
-
-
-
-// const db = new Sequelize('root', 'root', 'password', {
-// 	host: 'localhost',
+// const db = new Sequelize(process.env.DATABASE, process.env.username, process.env.password, {
+// 	host: process.env.host,
 // 	dialect: 'mysql',
 // 	operatorsAliases: false,
+
+
+
+const db = new Sequelize('zsolzcf_nodejs', 'zsolzcf_nodejs', 'DAZ.aFee$(Ya', {
+	host: 'zsolz.codefactory.live',
+	dialect: 'mysql',
+	operatorsAliases: false,
 
 	pool: {
 		max: 5,
